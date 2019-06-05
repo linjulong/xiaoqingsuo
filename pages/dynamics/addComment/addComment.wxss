@@ -1,0 +1,3 @@
+/* pages/dynamics/addComment/addComment.wxss */page{
+  background-color: white;
+}

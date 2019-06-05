@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/dynamics/dynamics",
+    "pages/dynamics/getMyDynamics/getMyDynamics",
+    "pages/dynamics/getMyDynamics/note/note",
+    "pages/dynamics/getMyDynamics/collection/collection",
+    "pages/dynamics/detail/detail",
+    "pages/dynamics/addDynamics/addDynamics",
+    "pages/dynamics/addComment/addComment",
+    "pages/dynamics/getComment/getComment",
+    "pages/dynamics/getComment/getCommentDetail/getCommentDetail",
+    "pages/chat/chat",
+    "pages/my/my",
+    "pages/authorize/authorize",
+    "pages/calendar/calendar",
+    "pages/collection/collection",
+    "pages/collection/detail/detail",
+    "pages/my/photo/photo",
+    "pages/my/photo/uploadPhoto/uploadPhoto",
+    "pages/my/partnerData/partnerData",
+    "pages/my/partnerData/relationship/relationship",
+    "pages/calendar/addcalendar/addcalendar",
+    "pages/calendar/calendarDetail/calendarDetail",
+    "pages/calendar/calendarDetail/editCalendar/editCalendar",
+    "pages/my/diary/diary",
+    "pages/my/diary/addDiary/addDiary",
+    "pages/my/diary/detail/detail",
+    "pages/my/album/album",
+    "pages/my/album/uploadPicture/uploadPicture",
+    "pages/index/menses/menses",
+    "pages/index/menses/set/set"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序获取天气接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F199B1",
+    "navigationBarTitleText": "小情锁",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#F597B1",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index_select.png"
+      },
+      {
+        "pagePath": "pages/dynamics/dynamics",
+        "text": "动态",
+        "iconPath": "images/dynamic.png",
+        "selectedIconPath": "images/dynamic_select.png"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "密语",
+        "iconPath": "images/chat.png",
+        "selectedIconPath": "images/chat_select.png"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "纪念日",
+        "iconPath": "images/calendar.png",
+        "selectedIconPath": "images/calendar_select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_select.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

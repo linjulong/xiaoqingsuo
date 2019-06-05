@@ -1,0 +1,216 @@
+.searchbar-result {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.dataList {
+  margin-bottom: 15rpx;
+  border-radius: 3px;
+}
+
+.sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  margin: 20rpx;
+  border-radius: 3px;
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
+}
+
+.voice {
+  display: flex;
+  flex-direction: row;
+}
+
+.voice_duration {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.voice_img {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f2f2f2;
+  margin-bottom: 10rpx;
+  margin-right: 20rpx;
+}
+
+.cross {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: -100px;
+  z-index: 1000;
+}
+
+.video {
+  display: flex;
+  flex-direction: row;
+}
+
+.video video {
+  width: 100px;
+  height: 100px;
+}
+
+.voice_img image {
+  width: 30px;
+  height: 30px;
+}
+
+.image image {
+  width: 100px;
+  height: 100px;
+}
+
+.sort text {
+  color: rgb(87, 107, 159);
+  font-weight: 600;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20rpx;
+}
+
+.collectionImg image {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  padding: 15rpx;
+  border-radius: 50%;
+}
+
+.date {
+  font-size: 12px;
+  color: rgb(145, 143, 143);
+}
+
+.searchbar-result:before {
+  display: none;
+}
+
+.weui-cell {
+  padding: 12px 15px 12px 35px;
+}
+
+.weui-icon-search {
+  margin-right: 8px;
+  font-size: inherit;
+}
+
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+}
+
+.weui-search-bar {
+  position: relative;
+  padding: 8px 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.weui-icon-search {
+  margin-right: 8px;
+  font-size: inherit;
+}
+
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+}
+
+.weui-icon-close_in-box {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+
+.weui-search-bar__text {
+  display: inline-block;
+  font-size: 17px;
+  vertical-align: middle;
+}
+
+.weui-search-bar__form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+  flex: auto;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.weui-search-bar__box {
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.weui-search-bar__input {
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+}
+
+.weui-icon-clear {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 8px;
+  font-size: 0;
+}
+
+.weui-search-bar__label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  border-radius: 3px;
+  text-align: center;
+  color: #9b9b9b;
+  background: #fff;
+  line-height: 28px;
+}
+
+.weui-search-bar__cancel-btn {
+  margin-left: 10px;
+  line-height: 28px;
+  color: #f199b1;
+  white-space: nowrap;
+}
+
+.placeholder-class {
+  font-size: 17px;
+}
+
+.searchResult {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  height: 300rpx;
+  border-radius: 5px;
+}

@@ -1,0 +1,65 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='action'>
+      <text class='icon-add' style='color:white;font-size:23px;' bindtap='add'></text>
+      <view class='content' style='color:white;font-size:17px;'>纪念日</view>
+    </view>
+  </view>
+</view>
+
+<view class='header'>
+  <view class='header-1'>
+    <image src='/images/logo.png'></image>
+    <view class='love'>
+      <text>我们已经相爱</text>
+      <text style='color:#b1b0b0;font-size:12px;margin-top:10rpx;'>从{{lovesDate}} 至今</text>
+    </view>
+  </view>
+  <view class='header-2'>
+    <text>{{day}}</text>天
+  </view>
+</view>
+
+<!-- <view class="cu-timeline">
+  <view wx:for="{{calendar}}" wx:key class="cu-item {{item.remindFlag?'text-blue':'text-orange'}}" bindtap='getDetail' data-data='{{item}}'>
+    <view class="{{item.remindFlag?'bg-blue':'bg-orange'}} content">
+      <view class='msg'>
+        <text wx:if="{{!item.remindFlag}}" class='text-cut' style='width:220px'>{{item.msg}}已经</text>
+        <text wx:if="{{item.remindFlag}}" class='text-cut' style='width:220px'>距离{{item.msg}}还有</text>
+        <text decode>{{item.datedifference}}&nbsp;天</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+<scroll-view scroll-y='true' style="height: {{scrollViewHeight}}px;" id='scroll-view'>
+  <view class='weui-cell-third'>
+    <view class='weui-cell-line' hidden='{{show}}'>
+      <view class='weui-cell-list'>
+        <view class='weui-cell-circle' style='border-color: #F199B1;'></view>
+        <view class='weui-cell-item' bindtap='getDetail' data-canitdelete='false' data-data='{{item}}'>
+          <text wx:if="{{!item.remindFlag}}" class='weui-cell-event'>我们已相爱</text>
+          <view class='weui-cell-day'>
+            <text class="static-remind-days">{{day}}</text>
+            <text class="static-remind-day">天</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:for="{{calendar}}" wx:key>
+      <view class='weui-cell-line'>
+        <view class='weui-cell-list'>
+          <view wx:if="{{item.remindFlag}}" class='weui-cell-circle' style='border-color: rgb(95, 166, 254);'></view>
+          <view wx:if="{{!item.remindFlag}}" class='weui-cell-circle' style='border-color: rgb(236, 138, 3);'></view>
+          <view class='weui-cell-item cut' bindtap='getDetail' data-data='{{item}}' data-canitdelete='true'>
+            <text wx:if="{{!item.remindFlag}}" class='weui-cell-event'>{{item.msg}}已经</text>
+            <text wx:if="{{item.remindFlag}}" class='weui-cell-event '>距离{{item.msg}}还有</text>
+            <view class='weui-cell-day'>
+              <text class="{{item.remindFlag?'remind-days':'days'}}">{{item.datedifference}}</text>
+              <text class="{{item.remindFlag?'remind-day':'day'}}">天</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

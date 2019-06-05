@@ -1,0 +1,100 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>详细</view>
+    </navigator>
+  </view>
+</view>
+
+
+<view hidden='{{!showData}}'>
+  <view class='main1' id='toComment'>
+    <view class='content1'>
+      <view class='author'>
+        <image src='{{data.senderInfo.avatarUrl}}'></image>
+        <view>
+          <text style='font-size:15px;'>{{data.senderInfo.nickName}}</text>
+          <text style='color:rgb(124, 123, 123);font-size:12px;'>{{data.createDate}}</text>
+        </view>
+      </view>
+      <view class='atten'>
+        <button class='cu-btn round lines-pink' bindtap='concern'>关注</button>
+      </view>
+    </view>
+    <view class='title'>
+      <text>{{data.title}}</text>
+    </view>
+    <view class='content12'>
+      <text>{{data.content}}</text>
+    </view>
+
+    <view class='img' wx:for="{{data.uploadImgArr}}" wx:key>
+      <image mode="widthFix" src='{{item}}' style='width:100%;' bindtap='previewImage' data-src='{{item}}'></image>
+    </view>
+  </view>
+
+  <view class='line'></view>
+
+  <view class='commentCount text-gray'>
+    <text>全部评论({{data.commentCount}})</text>
+    <view>
+      <view hidden='{{sort}}' bindtap='sort'>正序
+        <text class='icon-triangleupfill text-gray'></text>
+      </view>
+      <view hidden='{{!sort}}' bindtap='sort'>正序
+        <text class='icon-triangledownfill text-gray'></text>
+      </view>
+    </view>
+  </view>
+
+  <view class='line1'></view>
+
+  <view wx:if='{{data.commentCount==0}}' class='noComment'>
+    <image src='/images/safa.png' style='width:70px;height:60px;'></image>
+    <text style='color:#ccc;font-size:15px;'>暂无评论，就等你了哦</text>
+  </view>
+  <view wx:if='{{data.commentCount!=0}}' class='commentitem' wx:for="{{data.comments}}" wx:key data-senderInfo="{{item.senderInfo}}" bindtap='addReply' data-id='{{item.id}}'>
+    <view class='commentitem-avatar'>
+      <image src='{{item.senderInfo.avatarUrl}}'></image>
+    </view>
+    <view class='commentitem-item'>
+      <text style='font-size:13px;'>{{item.senderInfo.nickName}}</text>
+      <view class='timea'>
+        <text wx:if="{{index==0}}">沙发</text>
+        <text wx:elif="{{index==1}}">板凳</text>
+        <text wx:else>{{index+1}}楼</text>
+        <text style='margin-left:10rpx;'>{{item.timeAgo}}</text>
+      </view>
+      <text style='margin-top:30rpx;font-size:17px;' wx:if="{{item.action=='leaveMsg'}}">{{item.msg}}</text>
+      <text decode style='margin-top:30rpx;font-size:17px;' wx:else>回复&nbsp;{{item.replyer.nickName}}:&nbsp;{{item.msg}}</text>
+    </view>
+  </view>
+
+  <view class='no'></view>
+
+  <view class='util'>
+    <view class='utils'>
+      <view class='input'>
+        <input style='width:{{width/2}}px;' bindfocus="bindfocus" bindinput="bindinput" bindblur="bindblur" placeholder="{{placeholder}}" placeholder-style="margin-left:10px;" adjust-position bindconfirm="bindconfirm" value='{{value}}' focus='{{focus}}'></input>
+      </view>
+      <view class='tag'>
+        <text class='icon-comment' style='font-size:25px' bindtap='toComment'></text>
+        <text class='tag-text'>{{data.commentCount}}</text>
+      </view>
+      <text class='icon-favor' style='font-size:25px' bindtap='addCollection' hidden='{{state}}'></text>
+      <text class='icon-favorfill' style='font-size:25px;color:rgb(255,195,73);' bindtap='addCollection' hidden='{{!state}}'></text>
+      <view>
+        <button open-type="share" class='button'>
+          <text class='icon-share' style='font-size:25px'></text>
+        </button>
+      </view>
+    </view>
+    <view class='aite' hidden='{{!showInput}}'>
+      <label class="radio" bindtap='radioChange'>
+        <radio class='red' checked='{{checked}}' /> 通知另一半
+      </label>
+      <button class='cu-btn round navbarcolor button-hover btn' bindtap='send'>发送</button>
+    </view>
+  </view>
+</view>

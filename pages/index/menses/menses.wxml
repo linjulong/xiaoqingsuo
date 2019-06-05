@@ -1,0 +1,43 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>小姨妈</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='set'>
+  <navigator url='set/set'>
+    设置
+  </navigator>
+</view>
+
+<view wx:if="{{coming}}" style='clear:both;'>
+  <view class='center'>
+    <image src='../../../images/menses.gif'></image>
+  </view>
+  <view class='text'>
+    <text>最近一次来姨妈： {{startDate}}</text>
+
+  </view>
+
+  <view class='center'>
+    <button class="cu-btn margin-tb-sm lg" bindtap='setEnd'>小可爱的姨妈走了哦</button>
+  </view>
+</view>
+
+<view wx:else style='clear:both;'>
+  <view class='center'>
+    <image src='../../../images/countMenses.png'></image>
+  </view>
+  <view class='text count'>
+    <text decode>距离姨妈大驾光临还有&nbsp;{{countDown}}</text>
+  </view>
+  <view class='text'>
+    <text>最近一次来姨妈： {{startDate}}</text>
+  </view>
+  <view class='center'>
+    <button class="cu-btn margin-tb-sm lg" bindtap='setStart'>小可爱的姨妈提前来了哦</button>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<!--pages/my/album/uploadPicture/uploadPicture.wxml-->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>上传</view>
+    </navigator>
+  </view>
+</view>
+
+
+<wux-cell-group>
+  <wux-cell hover-class="none">
+    <wux-textarea bind:change="msg" hasCount rows="5" cursorSpacing="80" focus='true' placeholder="留给未来更多的感动..." />
+  </wux-cell>
+</wux-cell-group>
+
+<view class='img'>
+  <block wx:for="{{imgList}}" wx:key>
+    <view style="position:relative;">     
+      <image catchtap='previewImage' data-url='{{item}}' class="{{deleteIndex==index?'deleting':''}}" src='{{item}}' mode='aspectFill' style='width:{{width}}px;height:{{height}}px'></image>
+       <!-- 显示已选择图片 -->
+      <view class="cu-tag bg-red" style="position:absolute;z-index:2;right:0;top:10px;" catchtap='deleteImage' data-index='{{index}}'>
+        <text class='icon-close' style='font-size:10px;'></text>
+        <!-- 叉号 -->
+      </view>
+    </view>
+  </block>
+  <view class='upload' style='width:{{width}}px;height:{{height}}px' bindtap='chooseImg'>
+    <!-- 添加图片的图标 -->
+    <image src='/images/photo_add.png'></image>
+  </view>
+</view>
+
+<view class='save-button'>
+  <wux-button block type="stable" bindtap='upload'>保存</wux-button>
+</view>
+
+<!-- 上传状态框 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <image src='/images/timg.jpg' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>正在上传:{{progress}}%</view>
+</view>

@@ -1,0 +1,38 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>我的社区</view>
+    </navigator>
+  </view>
+</view>
+
+
+<view class="cu-list menu sm-border margin-top margin-bottom">
+  <view class="cu-item">
+    <view class='content padding-top padding-bottom'>
+      <view class='cu-avatar round lg' style='background-image:url({{myUserInfo.avatarUrl}});'>
+        <view class="cu-tag badge icon-male bg-blue" wx:if="{{myUserInfo.gender==1}}"></view>
+        <view class="cu-tag badge icon-female bg-pink" wx:elif="{{myUserInfo.gender==2}}"></view>
+      </view>
+      <text style='margin-left:20rpx;'>{{myUserInfo.nickName}}</text>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="cu-list menu sm-border">
+  <view class="cu-item arrow" bindtap='getMyNote'>
+    <view class='content'>
+      <text class='icon-comment tezi'></text>
+      <text style='margin-left:10rpx;'>我的帖子</text>
+    </view>
+  </view>
+  <view class="cu-item arrow" bindtap='getCollection'>
+    <view class='content'>
+      <text class='icon-favor collection'></text>
+      <text style='margin-left:10rpx;'>我的收藏</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>我的帖子</view>
+    </navigator>
+  </view>
+</view>
+
+<view style='width:100%;'>
+  <view class='line'></view>
+  <view class='dataMany padding-xl radius shadow-warp bg-white margin-top' wx:for="{{dataMany}}" wx:key data-id='{{item.id}}' bindtap='getDetail'>
+    <view class='title'>{{item.title}}</view>
+    <view class='content'>{{item.content}}</view>
+    <view class='img' wx:for="{{item.uploadImgArr}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key>
+      <image src='{{imgItem}}' style='width:{{width}}px;height:{{height}}px;' mode='aspectFill' wx:if="{{imgIndex!='2'}}"></image>
+      <image src='{{imgItem}}' style='width:{{width}}px;height:{{height}}px;' mode='aspectFill' wx:if="{{imgIndex=='2'}}">
+        <text class='uploadImgCount'>共{{item.uploadImgCount}}张</text>
+      </image>
+    </view>
+  </view>
+</view>

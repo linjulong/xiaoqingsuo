@@ -1,0 +1,75 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>收藏</view>
+    </navigator>
+  </view>
+</view>
+
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-search-bar" style='top:5px;'>
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" placeholder-class='placeholder-class' value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <text class="icon-search lg text-gray weui-icon-search_in-box"></text>
+          <view wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <text class="icon-close lg text-gray weui-icon-close_in-box"></text>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <text class="icon-search lg text-gray weui-icon-search"></text>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <view class='sort'>
+      <text bindtap='sort' data-type='image'>图片</text>
+      <text style='color:#ccc;'>|</text>
+      <text bindtap='sort' data-type='video'>视频</text>
+      <text style='color:#ccc;'>|</text>
+      <text bindtap='sort' data-type='txt'>文字</text>
+      <text style='color:#ccc;'>|</text>
+      <text bindtap='sort' data-type='voice'>语音</text>
+    </view>
+    <view class="cu-list menu" style='margin:20rpx;'>
+      <view class="cu-item dataList {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:key bindtouchstart='ListTouchStart' bindtouchmove='ListTouchMove' bindtouchend='ListTouchEnd' data-item='{{item}}' data-target="move-box-{{index}}" bindtap='getDetail'>
+        <view class='content item'>
+          <block wx:if="{{item.type=='txt'}}">
+            <view class='msg'>{{item.msg}}</view>
+          </block>
+          <block wx:elif="{{item.type=='image'}}">
+            <view class='image'>
+              <image src='{{item.url}}' mode='aspectFill'></image>
+            </view>
+          </block>
+          <block wx:elif="{{item.type=='voice'}}">
+            <view class='voice'>
+              <view class='voice_img'>
+                <image src='/images/collection_voice.png' mode='aspectFill'></image>
+              </view>
+              <view class='voice_duration'>{{item.duration}}秒</view>
+            </view>
+          </block>
+          <block wx:elif="{{item.type=='video'}}">
+            <view class='video'>
+              <video src='{{item.url}}' show-fullscreen-btn=""></video>
+              <view class='cross'></view>
+            </view>
+          </block>
+          <view class='date'>{{item.time}}</view>
+        </view>
+        <view class='move'>
+          <view class='collectionImg'>
+            <image src='/images/share_collection.png' catchtap='share'></image>
+          </view>
+          <view class='collectionImg'>
+            <image src='/images/delete.png' catchtap='del' data-id='{{item.id}}'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

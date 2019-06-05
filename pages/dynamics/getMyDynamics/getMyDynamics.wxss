@@ -1,0 +1,11 @@
+.tezi{
+  background-color: rgb(57, 209, 126);
+  color: #fff;
+  border-radius: 5px;
+}
+
+.collection{
+  background-color: rgb(253, 202, 0);
+  color: #fff;
+  border-radius: 5px;
+}

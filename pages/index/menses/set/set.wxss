@@ -1,0 +1,23 @@
+/* pages/index/menses/set/set.wxss */
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title image {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+}

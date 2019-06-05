@@ -1,0 +1,26 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>详细</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='comments' wx:for="{{comments}}" wx:key data-itemid='{{item.itemId}}' data-type='{{item.type}}' bindtap='getDetail'>
+  <view class='img'>
+    <image src='{{item.replyer.avatarUrl}}' wx:if="{{item.action==='reply'}}"></image>
+    <image src='{{item.senderInfo.avatarUrl}}' wx:if="{{item.action==='leaveMsg'}}"></image>
+  </view>
+  <view class='detail'>
+    <text style='color: rgb(122, 122, 122);margin-top:20rpx;' wx:if="{{item.action==='leaveMsg'}}">{{item.senderInfo.nickName}}</text>
+    <text style='color: rgb(122, 122, 122);margin-top:20rpx;' wx:if="{{item.action==='reply'}}">{{item.replyer.nickName}}</text>
+    <text style='margin-top:20rpx;margin-bottom:20rpx;'>{{item.msg}}</text>
+    <text style='color: rgb(122, 122, 122);font-size:11px;margin-bottom:20rpx;' decode>{{item.timeAgo}}&nbsp;&nbsp;<text wx:if="{{item.type=='diary'}}">日记</text><text wx:if="{{item.type=='photo'}}">相册</text><text wx:if="{{item.type=='calendar'}}">纪念日</text></text>
+  </view>
+</view>
+<view class='line' hidden='{{!showMore}}'></view>
+<view class='showMore' hidden='{{!showMore}}' bindtap='showMore'>
+  {{showMoreTxt}}<view class='loading' hidden='{{!showing}}'></view>
+</view>
+

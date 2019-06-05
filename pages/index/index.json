@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "wux-fab-button": "../../dist/fab-button/index"
+  }
+}

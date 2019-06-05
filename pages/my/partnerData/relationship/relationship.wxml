@@ -1,0 +1,17 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>关系</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='text'>
+  <text>真实爱情的途径并不平坦。————莎士比亚</text>
+</view>
+<view class='button'>
+  <button class='cu-btn block line-gray margin-tb-sm lg' style='margin:20px;' bindtap='breakship'>
+    <text>解除关系</text>
+  </button>
+</view>

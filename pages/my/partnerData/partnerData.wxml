@@ -1,0 +1,29 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>资料</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='data'>
+  <view class='avatar1'>
+    <view>头像</view>
+    <view class='cu-avatar round lg margin-left' style='background-image:url({{partnerUserInfo.avatarUrl}});'>
+      <view class="cu-tag badge icon-male bg-blue" wx:if="{{partnerUserInfo.gender==1}}"></view>
+      <view class="cu-tag badge icon-female bg-pink" wx:elif="{{partnerUserInfo.gender==2}}"></view>
+    </view>
+  </view>
+  <view class='line'></view>
+  <view class='nickname'>
+    <view>昵称</view>
+    <view>{{partnerUserInfo.nickName}}</view>
+  </view>
+</view>
+
+<view class='relationship' bindtap='break'>
+  <text>关系</text>
+  <text class='icon-right lg text-gray'></text>
+</view>
+

@@ -1,0 +1,49 @@
+<!-- 截取字符串 -->
+<wxs src="substr.wxs" module="tools" />
+
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>相册</view>
+    </navigator>
+  </view>
+</view>
+
+<view class="cu-timeline" wx:for="{{list}}" wx:for-index="iindex" wx:key>
+  <view class="cu-time" wx:if="{{iindex==0}}">{{tools.sub(item.createDate,2,10)}}</view>
+  <view wx:else>
+    <view class="cu-time" wx:if="{{tools.sub(list[iindex].createDate,2,10)!=tools.sub(list[iindex-1].createDate,2,10)}}">{{tools.sub(item.createDate,2,10)}}</view>
+  </view>
+  <view class="cu-item">
+    <view class="content">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-cyan">{{item.senderInfo.nickName}}</view>
+        <view class="cu-tag line-cyan">{{tools.sub(item.createDate,10,19)}}</view>
+      </view>
+      <view class="margin-top">{{item.msg}}</view>
+      <view class="allImg" wx:for="{{item.uploadImgArr}}" wx:for-item="photoItem" wx:key wx:for-index="jindex">
+        <view style="position:relative;">
+          <!-- 照片 -->
+          <image catchtap='previewImage' src='{{photoItem}}' mode='aspectFill' style='width:{{width}}px;height:{{height}}px;margin-bottom:10px;border:2px #D3D3D3 solid;' data-url='{{photoItem}}'></image>
+
+          <!-- 待选 / 选中-->
+          <text class="icon-roundcheckfill text-xl text-bold {{tag[iindex][jindex]==1?'text-green':'text-gray'}}" style="position:absolute;z-index:2;right:6px;top:1px;" wx:key wx:if="{{apply}}" bindtap='selectDelete' data-i='{{iindex}}' data-j='{{jindex}}' data-id="{{list[iindex].id}}" data-url='{{photoItem}}'></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class='edit-btn' bindtap='edit' wx:if="{{showEdit}}">
+  <image src='/images/photo_edit.png'></image>
+</view>
+
+<view class="cu-bar btn-group bg-gray" wx:if="{{apply}}">
+  <button class="cu-btn line-slategray shadow" bindtap='cancelApply'>取消</button>
+  <button class="cu-btn bg-red shadow-blur" disabled='{{disabled}}' bindtap='deleteSelete'>删除
+    <span wx:if='{{count>0}}'>({{count}})</span>
+  </button>
+</view>

@@ -1,0 +1,49 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>编辑纪念日</view>
+    </navigator>
+  </view>
+</view>
+
+<wux-cell-group wx:if="{{canItDelete}}">
+  <wux-cell hover-class="none">
+    <wux-input placeholder="请输入纪念日的内容" focus value="{{msg}}" controlled bind:change="onChange">
+      <image style="width: 20px; height: 20px; margin-right: 10px" src="/images/edit.png" />
+    </wux-input>
+  </wux-cell>
+  <wux-cell hover-class="none" bindtap="showDatePickerPlus">
+    <image style="width: 20px; height: 20px; margin-right: 10px" src="/images/time.png" />
+    <text class='dateStr'>{{dateInfo.dateStr?dateInfo.dateStr:data.dateStr}}</text>
+  </wux-cell>
+  <wux-cell hover-class="none" bindtap='remind'>
+    <image style="width: 20px; height: 20px; margin-right: 10px" src="/images/remind.png" />
+    <text class='remind'>提醒</text>
+    <view class='center' slot="footer" style="margin-left: 5px">
+      <text decode style='color: rgb(64, 64, 247);font-size: 16px;'>{{remindTxt}}&nbsp;&nbsp;</text>
+      <text class='icon-right text-gray'></text>
+    </view>
+  </wux-cell>
+  <wux-cell hover-class="none">
+    <wux-textarea bind:change="detail" hasCount rows="4" cursorSpacing="80" controlled value="{{detail}}" />
+  </wux-cell>
+</wux-cell-group>
+
+<wux-cell-group wx:if="{{!canItDelete}}">
+  <wux-cell hover-class="none">
+    <wux-input value='我们是哪一天在一起的？' controlled disabled>
+      <image style="width: 20px; height: 20px; margin-right: 10px" src="/images/edit.png" />
+    </wux-input>
+  </wux-cell>
+  <wux-cell hover-class="none" bindtap="showDatePickerPlus">
+    <image style="width: 20px; height: 20px; margin-right: 10px" src="/images/time.png" />
+    <text class='dateStr'>{{dateInfo.dateStr?dateInfo.dateStr:data.dateStr}}</text>
+  </wux-cell>
+</wux-cell-group>
+
+<view style='position:fixed;bottom:20rpx;width:100%;padding-left:10px;padding-right:10px;'>
+  <wux-button block type="light" bindtap='save'>保存</wux-button>
+</view>
+
+<datepicker-plus bind:submit='submit' showDatePickerPlus='{{show}}' initDate="{{now}}"></datepicker-plus>

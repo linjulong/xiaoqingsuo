@@ -1,0 +1,33 @@
+/* pages/index/menses/menses.wxss */
+page{
+  background-color:rgb(244, 244,244)
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
+}
+
+.cu-btn {
+  color: white;
+  background-color: rgb(244, 85, 149);
+}
+
+.text {
+  text-align: center;
+  font-size: 16px;
+}
+
+.set{
+  float: right;  
+  padding: 20px;
+  color: rgb(27, 146, 11);
+  font-weight: bold;
+}
+
+.count{
+  font-size: 14px;
+  margin-bottom: 30px;
+}

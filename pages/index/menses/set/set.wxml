@@ -1,0 +1,47 @@
+<!--pages/index/menses/set/set.wxml-->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>设置</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='center'>
+  <image src='/images/setMenses.jpg' style='width:276px;height:183px;'></image>
+</view>
+
+<view class='text'>
+  <view style='font-size:20px;font-weight:bold;margin:15px;'>完善以下信息</view>
+  <view style='color:gray;font-size:13px;margin:15px;'>当姨妈来时，会第一时间得到提醒哦</view>
+</view>
+
+<view class="cu-form-group">
+  <view class="title">
+    <image src='/images/timeMenses.png'></image>
+    日期选择
+  </view>
+  <picker mode="date" value="{{startDate}}" start="2015-01-01" end="2030-12-31" bindchange="DateChange">
+    <view class="picker" style='color:#F597B1;'>
+      {{startDate?startDate:'请输入'}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="title">
+    <image src='/images/rateMenses.png'></image>
+    姨妈间隔
+  </view>
+  <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+    <view class="picker" style='color:#F597B1;'>
+      {{index?picker[index]:'请输入'}}
+    </view>
+  </picker>
+</view>
+
+<view class="padding">
+  <button class="cu-btn block bg-green margin-tb-sm lg" bindtap='saveMenses' loading="{{loading}}">
+    {{button_txt}}
+  </button>
+</view>

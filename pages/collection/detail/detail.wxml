@@ -1,0 +1,32 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1'>
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>详情</view>
+    </navigator>
+  </view>
+</view>
+
+<wux-divider>
+  <text class="text">{{data.time}}</text>
+</wux-divider>
+
+<view class='content'>
+  <block wx:if="{{data.type=='txt'}}">
+    <text>{{data.msg}}</text>
+  </block>
+  <block wx:elif="{{data.type=='image'}}">
+    <image src='{{data.url}}' mode='widthFix' style='height:{{height}}px' bindtap='previewImage' data-url='{{data.url}}'></image>
+  </block>
+  <block wx:elif="{{data.type=='voice'}}">
+    <view class='voice' bindtap='playRecord' data-url='{{data.url}}'>
+      <image src='/images/collection_voice.png'></image>
+      <text>{{data.duration}}秒</text>
+    </view>
+  </block>
+  <block wx:elif="{{data.type=='video'}}">
+    <video src="{{data.url}}" controls autoplay='true'></video>
+  </block>
+</view>
+
+<wux-divider show-text='' />

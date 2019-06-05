@@ -1,0 +1,136 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 50rpx 30rpx 50rpx 30rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.header-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f597b1;
+  padding: 15rpx;
+}
+
+.love {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+
+.love :first-child {
+  font-size: 20px;
+}
+
+.header-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header-2 text {
+  font-size: 50px;
+  margin-right: 15rpx;
+  color: #f199b1;
+}
+
+.msg {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+page {
+  background-color: rgb(244, 244, 244);
+}
+
+.weui-cell-list {
+  position: relative;
+  left: -6px;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 30rpx;
+}
+
+.weui-cell-line {
+  margin-left: 20rpx;
+  border-left: 1.5px solid rgb(193, 193, 193);
+}
+
+.weui-cell-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  border: 1px solid rgb(193, 193, 193);
+  margin-left: 10rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-radius: 5px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.weui-cell-third {
+  margin-left: 10rpx;
+}
+
+.weui-cell-circle {
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
+  z-index: 2;
+  background-color: white;
+}
+
+.weui-cell-event {
+  padding-left: 20rpx;
+}
+
+.weui-cell-day text {
+  color: white;
+  padding: 19rpx;
+}
+
+.days {
+  background-color: rgb(247, 163, 5);
+}
+
+.day {
+  background-color: rgb(236, 138, 3);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.static-remind-day {
+  background-color: #F199B1;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.static-remind-days {
+  background-color: rgb(241, 171, 190);
+}
+
+.remind-days {
+  background-color: rgb(95, 166, 254);
+}
+
+.remind-day {
+  background-color: rgb(70, 158, 248);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

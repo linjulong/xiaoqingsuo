@@ -1,0 +1,11 @@
+var sub = function(val, a, b) {
+  if (val.length == 0 || val == undefined) {
+    return;
+  }
+  if (val.length > 10) {
+    return val.substring(a, b);
+  } else {
+    return val;
+  }
+}
+module.exports.sub = sub;

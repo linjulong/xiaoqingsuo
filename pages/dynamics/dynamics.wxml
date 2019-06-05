@@ -1,0 +1,136 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='wux-segmented-control'>
+      <wux-segmented-control controlled current="{{ current }}" theme="light" bind:change="onChange" values="{{ ['二人', '社区'] }}" />
+    </view>
+  </view>
+</view>
+
+<view class='new' wx:if="{{commentCount>0?'true':''}}" bindtap='getComments' hidden='{{current!=0}}'>
+  <view>
+    <text style='color:white;'>{{commentCount}}条新消息</text>
+    <text class='icon-right lg text-gray'></text>
+  </view>
+</view>
+
+<view class='item' wx:for="{{dataTwo}}" wx:key hidden='{{current!=0}}'>
+  <view class='avatar'>
+    <image src='{{item.senderInfo.avatarUrl}}'></image>
+  </view>
+  <view class='item-item'>
+    <view class='nickName'>{{item.senderInfo.nickName}}</view>
+    <!-- 纪念日 -->
+    <view class='calendar' wx:if="{{item.type=='calendar'}}">
+      <text style='margin-left:-5rpx;'>添加了纪念日</text>
+      <view class='calendar-item' bindtap='getCalendar' data-data='{{item}}' data-canitdelete='true'>
+        <view class='text-cut calendar-item-1' wx:if="{{!item.remindFlag}}">{{item.msg}}已经</view>
+        <view class='text-cut calendar-item-1' wx:if="{{item.remindFlag}}">距离{{item.msg}}还有</view>
+        <view class='day calendar-item-2'>
+          <view class='days'></view>
+          <view class='day-day'>
+            <view class="diff {{item.remindFlag?'remind-days-color':'days-color'}}">{{item.datedifference}}</view>
+            <view class="static {{item.remindFlag?'remind-day-color':'day-color'}}">天</view>
+          </view>
+        </view>
+      </view>
+      <view class='date'>
+        <text decode>{{item.timeAgo}}&nbsp;&nbsp;纪念日</text>
+        <text class='icon-comment text-gray' style='font-size:16px;' bindtap='comment' data-id='{{item.id}}' data-type="{{item.type}}" data-action='leaveMsg'></text>
+      </view>
+      <view class='comments'>
+        <text class='nickName1' wx:for="{{item.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{item.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.senderInfo}}' bindtap='answer' wx:if="{{commentsitem.action==='leaveMsg'}}">{{commentsitem.senderInfo.nickName}}:<text>{{commentsitem.msg}}</text></text>
+        <text class='nickName1' wx:for="{{item.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{item.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.replyer}}' bindtap='answer' wx:if="{{commentsitem.action==='reply'}}">{{commentsitem.replyer.nickName}}<text>回复</text>
+        <text style='color: rgb(82, 110, 134);font-weight:600;'>{{commentsitem.senderInfo.nickName}}</text>
+        <text decode style='color:black;'>:&nbsp;{{commentsitem.msg}}</text></text>
+      </view>
+    </view>
+    <!-- 日记本 -->
+    <view class='diary' wx:if="{{item.type=='diary'}}">
+      <text style='margin-left:-5rpx;'>添加了一条日记</text>
+      <view class='diary-detail' bindtap='getDiary' data-data='{{item}}' style='margin-bottom:10rpx;'>{{item.msg}}</view>
+      <view class='date'>
+        <text decode>{{item.timeAgo}}&nbsp;&nbsp;日记本</text>
+        <text class='icon-comment text-gray' style='font-size:16px;' bindtap='comment' data-id='{{item.id}}' data-type="{{item.type}}" data-action='leaveMsg'></text>
+      </view>
+      <view class='comments'>
+        <text class='nickName1' wx:for="{{item.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{item.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.senderInfo}}' bindtap='answer' wx:if="{{commentsitem.action==='leaveMsg'}}">{{commentsitem.senderInfo.nickName}}:<text>{{commentsitem.msg}}</text></text>
+        <text class='nickName1' wx:for="{{item.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{item.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.replyer}}' bindtap='answer' wx:if="{{commentsitem.action==='reply'}}">{{commentsitem.replyer.nickName}}<text>回复</text>
+        <text style='color: rgb(82, 110, 134);font-weight:600;'>{{commentsitem.senderInfo.nickName}}</text>
+        <text decode style='color:black;'>:&nbsp;{{commentsitem.msg}}</text></text>
+      </view>
+    </view>
+    <!-- 相册 -->
+    <view class='photo' wx:if="{{item.type=='photo'}}">
+      <view class='photo-item'>
+        <image wx:for="{{item.uploadImgArr}}" wx:for-item="item_item" wx:key src='{{item_item}}' mode='aspectFill' bindtap='previewImage' data-url='{{item_item}}'></image>
+      </view>
+      <view class='date' style='font-weight:600;'>
+        <text decode>{{item.timeAgo}}&nbsp;&nbsp;相册</text>
+        <text class='icon-comment text-gray' style='font-size:16px;' bindtap='comment' data-id='{{item.id}}' data-type="{{item.type}}" data-action='leaveMsg'></text>
+      </view>
+      <view class='comments'>
+        <text class='nickName1' style='font-weight:600;' wx:for="{{item.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{item.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.senderInfo}}'
+          bindtap='answer' wx:if="{{commentsitem.action==='leaveMsg'}}">{{commentsitem.senderInfo.nickName}}:<text>{{commentsitem.msg}}</text></text>
+        <text class='nickName1' style='font-weight:600;' wx:for="{{item.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{item.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.replyer}}' bindtap='answer'
+          wx:if="{{commentsitem.action==='reply'}}">{{commentsitem.replyer.nickName}}<text>回复</text>
+        <text style='color: rgb(82, 110, 134);font-weight:600;'>{{commentsitem.senderInfo.nickName}}</text>
+        <text decode style='color:black;'>:&nbsp;{{commentsitem.msg}}</text></text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view hidden='{{current==0}}' style='width:100%;'>
+  <scroll-view scroll-x>
+    <view class="tab {{index==TabCur?'tabcolor cur':''}}" wx:for="{{tab}}" wx:key bindtap='tabSelect' data-id="{{item.index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <view class='line'></view>
+  <!-- 热门 新鲜 -->
+  <view class='dataMany padding-xl radius shadow-warp bg-white margin-top' wx:for="{{dataMany}}" wx:key data-id='{{item.id}}' bindtap='getDetail' hidden='{{TabCur!=0&&TabCur!=1}}'>
+    <view class='title'>{{item.title}}</view>
+    <view class='content'>{{item.content}}</view>
+    <view class='img' wx:for="{{item.uploadImgArr}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key>
+      <image src='{{imgItem}}' style='width:{{width}}px;height:{{height}}px;' mode='aspectFill' wx:if="{{imgIndex!='2'}}"></image>
+      <image src='{{imgItem}}' style='width:{{width}}px;height:{{height}}px;' mode='aspectFill' wx:if="{{imgIndex=='2'}}">
+        <text class='uploadImgCount'>共{{item.uploadImgCount}}张</text>
+      </image>
+    </view>
+    <view class='msg'>
+      <view class='msg-avatar'>
+        <image src='{{item.senderInfo.avatarUrl}}'></image>
+      </view>
+      <view class='msg-nickName text-gray'>
+        {{item.senderInfo.nickName}}
+        <view class='icon-male sex1' wx:if="{{item.senderInfo.gender==1}}"></view>
+        <view class='icon-female sex2' wx:if="{{item.senderInfo.gender==2}}"></view>
+      </view>
+      <view class='ago text-gray'>
+        {{item.timeAgo}}
+      </view>
+      <view class='text-gray text-df ic'>
+        <text decode class="icon-attentionfill">&nbsp;{{item.hadRead}}&nbsp;</text>
+        <text decode class="icon-favorfill">&nbsp;{{item.collectionCount}}&nbsp;</text>
+        <text decode class="icon-messagefill">&nbsp;{{item.commentCount}}&nbsp;</text>
+      </view>
+    </view>
+  </view>
+  <!-- 关注 -->
+  <view hidden='{{TabCur!=2}}'>关注</view>
+  <view hidden="{{TabCur!=3}}" class='advertisement padding-xl radius shadow-warp bg-white margin-top' wx:for="{{dataMany}}" wx:key>
+    <view class='brand'>{{item.brand}}</view>
+    <view class='content'>{{item.content}}</view>
+    <image src='{{item.img}}' mode='aspectFill'></image>
+  </view>
+</view>
+
+<view class='showMore' hidden='{{!showMore}}' bindtap='showMore'>
+  {{showMoreTxt}}...
+  <view class='loading' hidden='{{noMore}}'></view>
+</view>
+
+
+<view class='edit-btn' hidden='{{current==0}}' bindtap='more'>
+  <image src='/images/meun.png'></image>
+</view>

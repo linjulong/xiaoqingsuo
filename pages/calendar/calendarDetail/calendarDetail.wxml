@@ -1,0 +1,25 @@
+<view class="cu-custom" style="height:{{CustomBar}}px; position: absolute;">
+  <view class='bar fixed' style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white;margin:20px;'></text>
+    </navigator>
+  </view>
+</view>
+
+<view class='background-image' style="background-image: url({{bgImg}})">
+  <text wx:if="{{!data.remindFlag}}" class='msg'>{{data.msg}}已经</text>
+  <text wx:if="{{data.remindFlag}}" class='msg'>距离{{data.msg}}还有</text>
+  <view class='days'>
+    <text style='font-size:50px;color:white;'>{{data.datedifference}}</text>
+    <view class='default'>
+      <text>Days</text>
+    </view>
+  </view>
+  <text class='date'>{{data.dateStr}}</text>
+  <text style='margin:20rpx;'>{{data.detail}}</text>
+  <view class='footer'>
+    <image src='/images/edit1.png' bindtap='editCalendar'></image>
+    <image wx:if="{{canItDelete}}" src='/images/deleteDate.png' bindtap='deleteCalendar'></image>
+  </view>
+</view>
+

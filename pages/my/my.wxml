@@ -1,0 +1,81 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='content' style='color:white;font-size:17px;'>我的</view>
+  </view>
+</view>
+
+<view class="avatar">
+  <view class='avatar-1' wx:if="{{canIUse}}">
+    <image src='{{myUserInfo.avatarUrl}}' class='myAvatar'></image>
+    <text>{{myUserInfo.nickName}}</text>
+  </view>
+  <view class='avatar-1' wx:if="{{state}}" bindtap='jump'>
+    <image src='{{partnerUserInfo.avatarUrl}}' class='myAvatar'></image>
+    <text>{{partnerUserInfo.nickName}}</text>
+  </view>
+  <view class='avatar-1' wx:else>
+    <view class='avatar-2'>
+      <button class='button' bindtap='showModal'>
+        <image src='/images/love.png' mode='aspectFit'></image>
+      </button>
+    </view>
+    <text class='noPartner'>邀请另一半</text>
+  </view>
+</view>
+
+<view class='line'></view>
+
+<view class="cu-list menu sm-border">
+  <view class="cu-item arrow">
+    <navigator class='content' hover-class='none' url='../collection/collection' open-type="navigate">
+      <image src='/images/coll.png' style='width:22px;height:22px;margin-right:30rpx;'></image>
+      <text style='position: relative; top: 5rpx;margin-left:5rpx;'>收藏</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' hover-class='none' url='album/album' open-type="navigate">
+      <image src='/images/utils_photo.png' style='width:25px;height:25px;margin-right:30rpx;'></image>
+      <text>相册</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' hover-class='none' url='diary/diary' open-type="navigate">
+      <image src='/images/utils_diary.png' style='width:22px;height:22px;margin-left:3.5rpx;margin-right:30rpx;'></image>
+      <text>日记</text>
+    </navigator>
+  </view>
+</view>
+
+<view class="cu-list menu sm-border" style='margin-top:20rpx;'>
+  <view class="cu-item arrow content" bindtap='about'>
+    <!-- <navigator class='content' hover-class='none' url='../collection/collection' open-type="navigate"> -->
+    <view class='content'>
+      <image src='/images/about.png' style='width:22px;height:22px;margin-right:30rpx;margin-left:5rpx;'></image>
+      <text style='margin-left:5rpx;'>关于</text>
+    <!-- </navigator> -->
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal  {{showModal?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar justify-end">
+      <view class='content'>告白语</view>
+      <view class='action' bindtap='hideModal'>
+        <text class='icon-close text-red'></text>
+      </view>
+    </view>
+    <view class="cu-form-group model">
+      <view class='input'>
+        <text>告白语：</text>
+        <input placeholder="成功与否在此一举" value='{{input_value}}' bindinput='input'></input>
+      </view>
+    </view>
+    <view class="cu-bar justify-end">
+      <view class='action'>
+        <button class='cu-btn' bindtap='hideModal'>取消</button>
+        <button class='cu-btn navbarcolor margin-left text-white' bindtap='hideModal' open-type='share'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

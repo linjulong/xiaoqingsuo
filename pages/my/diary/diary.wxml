@@ -1,0 +1,40 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>日记本</view>
+    </navigator>
+  </view>
+</view>
+
+
+<view class='item' wx:for="{{list}}" wx:key bindtap='getDetail' data-data='{{item}}'>
+  <view class='item-1'>
+    <image src='{{item.senderInfo.avatarUrl}}'></image>
+    <text class='time'>{{item.createDate}}</text>
+  </view>
+  <view class='item-2'>
+    <text class='goods-details-content content-breif'>{{item.msg}}</text>
+  </view>
+</view>
+
+<navigator open-type="navigate" url='addDiary/addDiary' hover-class="none">
+  <view class='edit-btn'>
+    <image src='/images/add.png'></image>
+  </view>
+</navigator>
+
+<view class="cu-modal {{showModal?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img modal1" style="height:200px;">
+      <view class="cu-bar justify-end none-bg text-black">
+        <view class='action' bindtap='hideModal'>
+          <text class='icon-close '></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar">
+      <view class='action margin-0 flex-sub  solid-left' bindtap='hideModal'>我知道了</view>
+    </view>
+  </view>
+</view>

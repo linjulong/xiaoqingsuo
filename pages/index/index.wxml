@@ -1,0 +1,104 @@
+<view class="cu-custom" style="height:{{CustomBar}}px; position: absolute;">
+  <view class='bar fixed' style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <text class='icon-home' style='padding-left:20rpx;'></text>
+    <text style='padding-left:5rpx;'>小情锁</text>
+  </view>
+</view>
+<view class='background-image' bindlongpress="saveImageToPhotosAlbum" data-url='{{bgImg}}' wx:if='{{state}}' style="background-image: url({{bgImg}})">
+  <view class='header' style="padding-top:{{CustomBar}}px;">
+    <image src='{{myUserInfo.avatarUrl}}'></image>
+    <view class='text'>
+      <text class='text-1'>我们已相爱</text>
+      <view class='day'>
+        <view class="countup text-2">{{day}}</view>
+        <text class='text-1'>天</text>
+      </view>
+    </view>
+    <image src='{{partnerUserInfo.avatarUrl}}'></image>
+  </view>
+  <view class='nickName'>
+    <text>{{myUserInfo.nickName}}</text>
+    <text>{{partnerUserInfo.nickName}}</text>
+  </view>
+  <view>
+    <view class='weather'>
+      <view class='weather-item' wx:if="{{hadMyWeather}}">
+        <image src="../../images/cond-icon-heweather/{{myCond_code}}.png"></image>
+        <text>{{myFl}}</text>
+      </view>
+      <view wx:else class='weather-item'>
+        <image src="../../images/cond-icon-heweather/999.png"></image>
+        <text>下拉刷新</text>
+      </view>
+      <view class='weather-item' wx:if="{{hadpartnerWeather}}">
+        <image src="../../images/cond-icon-heweather/{{partnerCond_code}}.png"></image>
+        <text>{{partnerFl}}</text>
+      </view>
+      <view wx:else class='weather-item'>
+        <image src="../../images/cond-icon-heweather/999.png"></image>
+        <text>下拉刷新</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='fun'>
+    <scroll-view class="utils" scroll-x="true">
+      <form style='margin-left:20rpx;' bind:submit="formSubmit" report-submit="true">
+        <view class='item' bindtap='changeBgImg'>
+          <view class='item-item'>
+            <button class="bothPic" formType="submit"></button>
+            <text style='font-size:10px;margin-top:20rpx;'>合影设置</text>
+          </view>
+        </view>
+      </form>
+      <form style='margin-left: 47rpx;' bind:submit="formSubmit" report-submit="true">
+        <view class='item'>
+          <navigator open-type="switchTab" url="/pages/calendar/calendar" hover-class="none">
+            <view class='item-item'>
+              <button class="calendar" formType="submit"></button>
+              <text style='font-size:10px;margin-top:20rpx;'>纪念日</text>
+            </view>
+          </navigator>
+        </view>
+      </form>
+      <form style='margin-left: 47rpx;' bind:submit="formSubmit" report-submit="true">
+        <view class='item'>
+          <view class='item-item'>
+            <button class="share" open-type='share' formType="submit"></button>
+            <text style='font-size:10px;margin-top:20rpx;'>秀恩爱</text>
+          </view>
+        </view>
+      </form>
+      <form style='margin-left: 47rpx;' bind:submit="formSubmit" report-submit="true">
+        <view class='item'>
+          <navigator open-type="navigate" url='../my/album/album' hover-class="none">
+            <view class='item-item'>
+              <button class="pic" formType="submit"></button>
+              <text style='font-size:10px;margin-top:20rpx;'>相册</text>
+            </view>
+          </navigator>
+        </view>
+      </form>
+      <form style='margin-left: 47rpx;' bind:submit="formSubmit" report-submit="true">
+        <view class='item'>
+          <navigator open-type="navigate" url='../my/diary/diary' hover-class="none">
+            <view class='item-item'>
+              <button class="diary" formType="submit"></button>
+              <text style='font-size:10px;margin-top:20rpx;'>日记</text>
+            </view>
+          </navigator>
+        </view>
+      </form>
+      <form style='margin-left: 47rpx;margin-right:20rpx;' bind:submit="formSubmit" report-submit="true">
+         <view class='item'>
+          <navigator open-type="navigate" url='menses/menses' hover-class="none">
+            <view class='item-item'>
+              <button class="aunt" formType="submit"></button>
+              <text style='font-size:10px;margin-top:20rpx;'>小姨妈</text>
+            </view>
+          </navigator>
+        </view>
+      </form>
+    </scroll-view>
+  </view>
+</view>

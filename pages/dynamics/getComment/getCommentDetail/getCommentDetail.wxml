@@ -1,0 +1,75 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>详细</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='item' wx:key>
+  <view class='avatar'>
+    <image src='{{data.senderInfo.avatarUrl}}'></image>
+  </view>
+  <view class='item-item'>
+    <view class='nickName'>{{data.senderInfo.nickName}}</view>
+    <!-- 纪念日 -->
+    <view class='calendar' wx:if="{{data.type=='calendar'}}">
+      <text style='margin-left:-5rpx;'>添加了纪念日</text>
+      <view class='calendar-item' bindtap='getCalendar' data-data='{{data}}' data-canitdelete='true'>
+        <view class='text-cut calendar-item-1' wx:if="{{!data.remindFlag}}">{{data.msg}}已经</view>
+        <view class='text-cut calendar-item-1' wx:if="{{data.remindFlag}}">距离{{data.msg}}还有</view>
+        <view class='day calendar-item-2'>
+          <view class='days'></view>
+          <view class='day-day'>
+            <view class="diff {{data.remindFlag?'remind-days-color':'days-color'}}">{{data.datedifference}}</view>
+            <view class="static {{data.remindFlag?'remind-day-color':'day-color'}}">天</view>
+          </view>
+        </view>
+      </view>
+      <view class='date'>
+        <text decode>{{data.timeAgo}}&nbsp;&nbsp;纪念日</text>
+        <text class='icon-comment text-gray' style='font-size:16px;' bindtap='comment' data-id='{{data.id}}' data-type="{{data.type}}" data-action='leaveMsg'></text>
+      </view>
+      <view class='comments'>
+        <text class='nickName1' wx:for="{{data.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{data.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.senderInfo}}' bindtap='answer' wx:if="{{commentsitem.action==='leaveMsg'}}">{{commentsitem.senderInfo.nickName}}:<text>{{commentsitem.msg}}</text></text>
+        <text class='nickName1' wx:for="{{data.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{data.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.replyer}}' bindtap='answer' wx:if="{{commentsitem.action==='reply'}}">{{commentsitem.replyer.nickName}}<text>回复</text>
+        <text style='color: rgb(82, 110, 134);font-weight:600;'>{{commentsitem.senderInfo.nickName}}</text>
+        <text decode style='color:black;'>:&nbsp;{{commentsitem.msg}}</text></text>
+      </view>
+    </view>
+    <!-- 日记本 -->
+    <view class='diary' wx:if="{{data.type=='diary'}}">
+      <text style='margin-left:-5rpx;'>添加了一条日记</text>
+      <view class='diary-detail' bindtap='getDiary' data-data='{{data}}' style='margin-bottom:10rpx;'>{{data.msg}}</view>
+      <view class='date'>
+        <text decode>{{data.timeAgo}}&nbsp;&nbsp;日记本</text>
+        <text class='icon-comment text-gray' style='font-size:16px;' bindtap='comment' data-id='{{data.id}}' data-type="{{data.type}}" data-action='leaveMsg'></text>
+      </view>
+      <view class='comments'>
+        <text class='nickName1' wx:for="{{data.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{data.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.senderInfo}}' bindtap='answer' wx:if="{{commentsitem.action==='leaveMsg'}}">{{commentsitem.senderInfo.nickName}}:<text>{{commentsitem.msg}}</text></text>
+        <text class='nickName1' wx:for="{{data.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{data.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.replyer}}' bindtap='answer' wx:if="{{commentsitem.action==='reply'}}">{{commentsitem.replyer.nickName}}<text>回复</text>
+        <text style='color: rgb(82, 110, 134);font-weight:600;'>{{commentsitem.senderInfo.nickName}}</text>
+        <text decode style='color:black;'>:&nbsp;{{commentsitem.msg}}</text></text>
+      </view>
+    </view>
+    <!-- 相册 -->
+    <view class='photo' wx:if="{{data.type=='photo'}}">
+      <view class='photo-item'>
+        <image wx:for="{{data.uploadImgArr}}" wx:for-item="item_item" wx:key src='{{item_item}}' mode='aspectFill' bindtap='previewImage' data-url='{{item_item}}'></image>
+      </view>
+      <view class='date' style='font-weight:600;'>
+        <text decode>{{data.timeAgo}}&nbsp;&nbsp;相册</text>
+        <text class='icon-comment text-gray' style='font-size:16px;' bindtap='comment' data-id='{{data.id}}' data-type="{{data.type}}" data-action='leaveMsg'></text>
+      </view>
+      <view class='comments'>
+        <text class='nickName1' style='font-weight:600;' wx:for="{{data.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{data.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.senderInfo}}'
+          bindtap='answer' wx:if="{{commentsitem.action==='leaveMsg'}}">{{commentsitem.senderInfo.nickName}}:<text>{{commentsitem.msg}}</text></text>
+        <text class='nickName1' style='font-weight:600;' wx:for="{{data.comments}}" wx:key wx:for-item="commentsitem" data-type='{{commentsitem.type}}' data-itemid='{{data.id}}' data-commentid='{{commentsitem.id}}' data-senderInfo='{{commentsitem.replyer}}' bindtap='answer'
+          wx:if="{{commentsitem.action==='reply'}}">{{commentsitem.replyer.nickName}}<text>回复</text>
+        <text style='color: rgb(82, 110, 134);font-weight:600;'>{{commentsitem.senderInfo.nickName}}</text>
+        <text decode style='color:black;'>:&nbsp;{{commentsitem.msg}}</text></text>
+      </view>
+    </view>
+  </view>
+</view>

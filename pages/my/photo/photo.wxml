@@ -1,0 +1,45 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed navbarcolor" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta='1' hover-class="none">
+      <text class='icon-back' style='color:white'></text>
+      <view class='content' style='color:white;font-size:17px;'>相册</view>
+    </navigator>
+  </view>
+</view>
+
+<view class='listItem' wx:for="{{list}}" wx:key wx:for-item="listItem" wx:for-index="iindex">
+  <view class="date">
+    <text>{{listItem.createDate}}</text>
+    <text style='color:blue' wx:if='{{showDelete}}' data-index='{{iindex}}' bindtap='deleteItemArr'>删除</text>
+  </view>
+  <text class="msg">{{listItem.msg}}</text>
+  <view class="img">
+    <block wx:for="{{listItem.uploadImgArr}}" wx:for-item="photoItem" wx:key wx:for-index="jindex">
+      <view style="position:relative;">
+        <image catchtap='previewImage' data-url='{{photoItem}}' class="{{i==iindex&&j==jindex?'deleting':''}}" src='{{photoItem}}' mode='aspectFill' style='width:{{width}}px;height:{{height}}px'></image>
+        <view class="cu-tag bg-red" style="position:absolute;z-indent:2;right:0;top:3px;" catchtap='deleteImage' data-i='{{iindex}}' data-j='{{jindex}}' wx:if='{{showDelete}}'>
+          <text class='icon-close' style='font-size:10px;'></text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="cu-modal {{showModal?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img modal1" style="height:200px;">
+      <view class="cu-bar justify-end none-bg text-black">
+        <view class='action' bindtap='hideModal'>
+          <text class='icon-close '></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar">
+      <view class='action margin-0 flex-sub  solid-left' bindtap='hideModal'>我知道了</view>
+    </view>
+  </view>
+</view>
+
+<view class='edit-btn' bindtap='edit'>
+  <image src='/images/photo_edit.png'></image>
+</view>

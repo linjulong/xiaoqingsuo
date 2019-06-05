@@ -1,0 +1,14 @@
+page {
+  background-color: white;
+}
+
+.msg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20rpx;
+}
+
+text {
+  font-size: 15px;
+}
